@@ -13,7 +13,6 @@ Nothing clever here :wink:. Layouts, data files, and includes are all placed in 
 ```bash
 minimal-mistakes
 ├── _data                      # data files for customizing the theme
-|  ├── navigation.yml          # main navigation links
 |  └── ui-text.yml             # text used throughout the theme's UI
 ├── _includes
 |  ├── analytics-providers     # snippets for analytics (Google and custom)
