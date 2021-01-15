@@ -15,12 +15,12 @@ remote_theme           : "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale                   : "en-US"
+locale                   : "ko"
 title                    : "YD"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Dayoung Choi"
-description              : "An amazing website."
+description              : "적성에 안맞는데 직업이 된 개발"
 url                      : "https://ydydydyc.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : ""# the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -92,7 +92,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "Dayoung Choi"
+  name             : "YD"
   avatar           : "/assets/images/bio.png"# path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Software developer"
   location         : "Suwon"
