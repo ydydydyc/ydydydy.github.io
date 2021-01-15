@@ -2,7 +2,7 @@
 title: "Github.io 블로그 만들기"
 date: 2021-01-15 14:08:00 -0400
 categories: Git
-tags: Github, Github.io
+tags: [Github, Github.io]
 comments: true
 ---
 
