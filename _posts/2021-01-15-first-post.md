@@ -1,5 +1,5 @@
 ---
-title: "Github.io 블로그 만들기"
+title: "Github.io로 블로그 만들기"
 date: 2021-01-15 14:08:00 -0400
 categories: Git
 tags: [Github, Github.io]
@@ -129,6 +129,15 @@ Site author를 수정하면
 그리고 그 하위에 .md 확장자의 파일을 생성해서 적으면 된다. 이렇게
 ![posting](https://user-images.githubusercontent.com/77476913/104698766-32bcc200-5755-11eb-9854-b78b4b09f72c.PNG)  
 <br>
+
+그리고 첫줄은 반드시 아래 형식으로 적어야한다.
+```
+---
+title: "Github.io 블로그 만들기"
+date: 2021-01-15 14:08:00 -0400
+categories: Git
+---
+```
 다 적었으면 아까처럼 push
 ```
 $ git add .
