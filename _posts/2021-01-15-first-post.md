@@ -90,7 +90,7 @@ remote_theme           : "mmistakes/minimal-mistakes"
 
 remote_theme에 주석처리가 되어있을텐데 이 라인 주석을 풀어준다.
 
-```aidl
+```
 # Site Settings
 locale                   : "en-US"
 title                    : "YD"
@@ -103,7 +103,7 @@ baseurl                  : ""# the subpath of your site, e.g. "/blog"
 ```
 타이틀 같은 것들은 각자의 판단 하에 적절히 수정하고
 url은 만들었던 [owner].github.io로 변경하고, baseurl은 ""로 수정해준다.
-```aidl
+```
 # Site Author
 author:
   name             : "Dayoung Choi"
