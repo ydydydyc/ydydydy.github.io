@@ -2,6 +2,7 @@
 title: "Github.io 블로그 만들기"
 date: 2021-01-15 14:08:00 -0400
 categories: Git
+
 ---
 
 Github.io에 블로그를 만들고 처음 쓰는 포스팅  
@@ -14,4 +15,3 @@ Github.io에 블로그를 만들고 처음 쓰는 포스팅
 
 
 ### 1. Repository 만들기  
-[Repository] (https://github.com/new)
