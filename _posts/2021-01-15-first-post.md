@@ -14,4 +14,4 @@ Github.io에 블로그를 만들고 처음 쓰는 포스팅
 
 
 ### 1. Repository 만들기
-[Repository] [https://github.com/new]
+[Repository] (https://github.com/new)
