@@ -126,7 +126,16 @@ Site author를 수정하면
 
 ### 5. 첫 포스팅 하기
 루트에 _posts 라는 디렉토리를 하나 생성한다.
-그리고 그 하위에 .md 확장자의 파일을 생성해서 적으면 된다. 이렇게
+포스팅의 파일 이름은 아래 형식을 꼭 지켜야한다.
+YEAR-MONTH-DAY-title.MARKUP 
+```
+2016-07-20-writing-jekyll-posts.md
+2015-01-03-static-site-generators.markdown
+```
+참조 : https://jekyllrb.com/docs/posts/  
+
+그리고 예쁘게 내용을 작성하면 된다. 이렇게  
+
 ![posting](https://user-images.githubusercontent.com/77476913/104698766-32bcc200-5755-11eb-9854-b78b4b09f72c.PNG)  
 <br>
 
