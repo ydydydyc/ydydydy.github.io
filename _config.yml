@@ -21,7 +21,7 @@ title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Dayoung Choi"
 description              : "적성에 안맞는데 직업이 된 개발"
-url                      : "https://ydydydyc.github.io/"
+url                      : https://ydydydyc.github.io/
 baseurl                  : ""# the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
