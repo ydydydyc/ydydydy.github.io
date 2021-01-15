@@ -148,7 +148,7 @@ $ git push
   /_sass/minimal-mistakes/_reset.scss
   이 파일에서 font-size들을 조금씩 줄여줬다.
 
-```aidl
+```css
 html {
   /* apply a natural box layout model to all elements */
   box-sizing: border-box;
