@@ -14,6 +14,5 @@ Github.io에 블로그를 만들고 처음 쓰는 포스팅
 
 
 ### 1. Repository 만들기
-[Repository] [repoLink]
-[repoLink]: https://github.com/new
-![Alt text] C:\Users\DY\Desktop\repo1.PNG
+[Repository] [https://github.com/new]
+![Repository1] [C:\Users\DY\Desktop\repo1.PNG]
