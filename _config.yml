@@ -94,7 +94,7 @@ analytics:
 # Site Author
 author:
   name             : "Dayoung Choi"
-  avatar           : "/assets/images/profile.png"# path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/bio.png"# path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Software developer"
   location         : "Suwon"
   email            :
