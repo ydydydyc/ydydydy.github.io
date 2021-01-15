@@ -1,7 +1,7 @@
 ---
-title: "Github.io 블로그에 댓글창 만들기 (Jekyll)"
+title: "Github.io 블로그에 댓글창 만들기 (minimal-mistakes)"
 date: 2021-01-15
-categories: Git
+categories: [Git]
 tags: [Github, Github.io, disqus]
 comments: true
 ---
