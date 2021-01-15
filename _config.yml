@@ -90,6 +90,7 @@ analytics:
     tracking_id          :
     anonymize_ip         : # true, false (default)
 
+disqus_shortname: "ydydydy"
 
 # Site Author
 author:
