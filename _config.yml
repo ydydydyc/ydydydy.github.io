@@ -90,8 +90,6 @@ analytics:
     tracking_id          :
     anonymize_ip         : # true, false (default)
 
-disqus_shortname: "ydydydy"
-
 # Site Author
 author:
   name             : "Dayoung Choi"
@@ -277,6 +275,6 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       share: true
       related: true
