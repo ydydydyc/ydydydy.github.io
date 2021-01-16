@@ -56,7 +56,7 @@ getContext(), getApplicationContext(), getBaseContext(), 가끔은 그냥 getAct
 
 ## Application Context
 ***
-###getApplicationContext()
+### getApplicationContext()
 >Return the context of the single, global Application object of the current process.  
 This generally should only be used if you need a Context whose lifecycle is separate from the current context, that is tied to the lifetime of the process rather than the current component.  
 
@@ -75,11 +75,11 @@ MyApplication에 MyActivity1, MyActiviy2가 있다고 가정하면
 3. MyAcitivity2는 Application context, MyActivity2 context 둘 다 가지고있다.
 <br>
 
-###View.getConext()
+### View.getConext()
 ContentProvider(이것도 추후에 포스팅해야지) 가 실행중인 Context를 가져오며, **onCreate()가 호출 된 후에만 사용할 수 있다.**  
 Activity가 Destroy되면 소멸되며 생성자에서는 null을 리턴한다.
 
-###ContextWrapper.getBaseContext()
+### ContextWrapper.getBaseContext()
 ContextWrapper(요것도 추후에...)의 메소드. 자신의 context가 아닌 다른 Context에 접근하려고 할 때 사용한다. 
 
 **[Quiz1]**  
