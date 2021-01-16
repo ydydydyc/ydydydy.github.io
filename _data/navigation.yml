@@ -2,6 +2,8 @@
 main:
  - title: "Category"
    url: https://ydydydyc.github.io/categories/
+ - title: "Tag"
+   url: https://ydydydyc.github.io/tags/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
