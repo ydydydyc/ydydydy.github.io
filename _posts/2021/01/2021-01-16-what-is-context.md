@@ -15,7 +15,7 @@ Android application을 개발하면서 Context를 모를수는 없다.
 그런데 그 때도 사실 잘 이해가 가지 않았어서 이 참에 Context에 대한 정리를 다시 할 필요가 있겠다 싶었다.
 
 
-### Context란
+## Context란
 ***
 (대다수 개발자들이 그렇겠지만) 구글은 절대로 이름을 대충 짓지 않는다.  
 >context  
@@ -54,9 +54,9 @@ getContext(), getApplicationContext(), getBaseContext(), 가끔은 그냥 getAct
 <br>
 
 
-### Application Context
+## Application Context
 ***
-####getApplicationContext()
+###getApplicationContext()
 >Return the context of the single, global Application object of the current process.  
 This generally should only be used if you need a Context whose lifecycle is separate from the current context, that is tied to the lifetime of the process rather than the current component.  
 
@@ -66,7 +66,7 @@ lifecycle이 현재 context와 분리된 context를 필요로 할 경우 또는 
  
 <br>
 
-### Activity Context
+## Activity Context
 ***
 Activity Context는 말 그대로 Activity에서 사용할 수 있고 Activity의 lifecycle과 연관되어있다.  
 MyApplication에 MyActivity1, MyActiviy2가 있다고 가정하면  
@@ -75,11 +75,11 @@ MyApplication에 MyActivity1, MyActiviy2가 있다고 가정하면
 3. MyAcitivity2는 Application context, MyActivity2 context 둘 다 가지고있다.
 <br>
 
-####View.getConext()
+###View.getConext()
 ContentProvider(이것도 추후에 포스팅해야지) 가 실행중인 Context를 가져오며, **onCreate()가 호출 된 후에만 사용할 수 있다.**  
 Activity가 Destroy되면 소멸되며 생성자에서는 null을 리턴한다.
 
-####ContextWrapper.getBaseContext()
+###ContextWrapper.getBaseContext()
 ContextWrapper(요것도 추후에...)의 메소드. 자신의 context가 아닌 다른 Context에 접근하려고 할 때 사용한다. 
 
 **[Quiz1]**  
