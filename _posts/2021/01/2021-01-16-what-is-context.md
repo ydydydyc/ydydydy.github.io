@@ -6,7 +6,7 @@ tags: [Android, Android framework, Context]
 comments: true
 ---
 
-Android application을 개발하면서 `Context를 모를수는 없다.  
+Android application을 개발하면서 Context를 모를수는 없다.  
 하지만 누군가가 나한테 Context가 뭐야? 라고 물어보면 아 그거 있잖아...그거.. 정도로밖에 설명이 안된다.  
 
 작년 Android 11 포팅 작업을 하면서 GUI 이슈가 하나 있었는데 정말 이유를 알 수 없었다.  
@@ -114,4 +114,7 @@ If used from the Context returned here, the receiver is being registered with th
 
 `오류 지적은 항상 환영합니다.`
 
-
+참조  
+<https://blog.mindorks.com/understanding-context-in-android-application-330913e32514>  
+<https://developer.android.com/>  
+<https://stackoverflow.com/questions/3572463/what-is-context-on-android>  
