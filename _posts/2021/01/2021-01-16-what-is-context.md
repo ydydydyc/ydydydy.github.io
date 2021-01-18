@@ -112,7 +112,7 @@ If used from the Context returned here, the receiver is being registered with th
 <br>
 <br>
 
-`오류 지적은 항상 환영합니다.`
+오류 지적은 항상 환영합니다.
 
 참조  
 <https://blog.mindorks.com/understanding-context-in-android-application-330913e32514>  
