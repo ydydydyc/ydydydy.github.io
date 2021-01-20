@@ -52,7 +52,7 @@ Android 9부터 적용된 사항으로 앱에서 사용할 수 있는 비SDK 인
 ```
 setScanAlwaysAvailable() 이라는 메소드가 있는데 그 위에 annotaion이 붙어있다.  
 그리고 실제로 호출해보았다.
-```java
+```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
