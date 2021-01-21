@@ -9,14 +9,14 @@ comments: true
 **작성중**
 
 안드로이드의 버전이 높아질수록 Google에 OEM이나 3rd party app에 대해 제한하는 것들의 범위가 점점 넓어지고 있다.  
-preload app인데도 불구하고 framework의 api를 사용하지 못하는 것 뿐만 아니라, 나아가서는 framework를 updatable하게 만들기 위해 mainline을 적용하며 OEM에서 아예 소스코드를 수정하지 못하게 만드는 것 등등 제한의 폭은 다양해지고 있다.
+preload app인데도 불구하고 framework의 api를 사용하지 못하는 것 뿐만 아니라, 나아가서는 framework를 updatable하게 만들기 위해 mainline을 적용하며 OEM에서 아예 소스코드를 수정하지 못하게 만드는 등 제한의 폭은 다양해지고 있다.
 
 내가 담당하는 모듈이 이번 Android 11부터 mainlne의 후보가 되어 이번 포팅을 진행하며 쓰지 못했던 api가 종종 있었다.  
 ([Mainline과 apex](https://android-developers.googleblog.com/2019/05/fresher-os-with-projects-treble-and-mainline.html) 에 대한 설명은 링크를 참조)
 <br>
 <br>
 
-그러면 왜 나는 안드로이드에 인스톨 되는 apk중에 가장 막강한 권한을 가진 앱인 Settings를 개발하면서도 쓰지못하는 api가 있었는가?  
+그러면 왜 안드로이드에 인스톨 되는 apk중에 가장 막강한 권한을 가진 앱인 Settings도 쓰지못하는 api가 있었는가?  
 <br>
 
 
@@ -28,7 +28,6 @@ Android 9부터 적용된 사항으로 앱에서 사용할 수 있는 비SDK 인
 
 
 [WifiManager.java](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/android11-release/wifi/java/android/net/wifi/WifiManager.java) 의 소스코드를 일부 가져와봤다.  
-(내가 Wi-Fi 개발을 담당하고 있어서 WifiManager의 코드를 가져온 것도 있지만, 실제로도 많은 3rd party 개발자들이 Wi-Fi 관련 API를 많이 쓰고 있었고(특히 스캔) Android 10(Q OS)부터 상당히 많은 불편함을 겪은 것으로 알고있다. ~~아님말고~~)
 ```java
 /**
      * Set if scanning is always available.
