@@ -54,8 +54,7 @@ Unresolved reference: isConnectedMacRandomizationSupported
 ```
 isConnectedMacRandomizationSupported 없는 함수라고 표시된다.
 있는데?  
-그럼 @hide, @SystemApi, @RequiresPermission 
-각각은 무엇을 의미하는걸까?
+그럼 @hide, @SystemApi 각각은 무엇을 의미하는걸까?
 
 
 ### @hide
@@ -103,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 실제로 함수가 정상적으로 invoke 되었고 해당 값도 잘 리턴 되었다.  
+
+
+### @RequiresPermission 
 isConnectedMacRandomizationSupported의 경우 요구되는 permission이 "android.permission.ACCESS_WIFI_STATE" 뿐이기 때문에 3rd party app에서도 우회해서 사용할 수 있지만, 실제로는 다른 이유로 대부분의 함수들을 사용하지 못한다.  
 예를 들어 저장된 모든 Wi-Fi configuration을 삭제하는 factoryRest()을 Reflection으로 호출해본다고 가정했을 때,  
 
