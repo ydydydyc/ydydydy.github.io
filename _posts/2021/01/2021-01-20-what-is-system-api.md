@@ -6,7 +6,6 @@ tags: [Android, Android framework, systemapi]
 comments: true
 ---
 
-**작성중**
 
 안드로이드의 버전이 높아질수록 Google에 OEM이나 3rd party app에 대해 제한하는 것들의 범위가 점점 넓어지고 있다.  
 preload app인데도 불구하고 framework의 api를 사용하지 못하는 것 뿐만 아니라, 나아가서는 framework를 updatable하게 만들기 위해 mainline을 적용하며 OEM에서 아예 소스코드를 수정하지 못하게 만드는 등 제한의 폭은 다양해지고 있다.
@@ -16,10 +15,6 @@ preload app인데도 불구하고 framework의 api를 사용하지 못하는 것
 <br>
 <br>
 
-그러면 왜 안드로이드에 인스톨 되는 apk중에 가장 막강한 권한을 가진 앱인 Settings도 쓰지못하는 api가 있었는가?  
-<br>
-
-
 ### 비SKD 인터페이스 제한사항
 Android 9부터 적용된 사항으로 앱에서 사용할 수 있는 비SDK 인터페이스가 제한되었다.
 [Developer site](https://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces?hl=ko) 참고  
@@ -28,7 +23,8 @@ Android 9부터 적용된 사항으로 앱에서 사용할 수 있는 비SDK 인
 
 
 [WifiManager.java](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/android11-release/wifi/java/android/net/wifi/WifiManager.java) 의 소스코드를 일부 가져와봤다.  
-isConnectedMacRandomizationSupported()이라는, Connected 상태에서의 Random MAC을 지원하는지 여부를 확인하는 API이다.
+isConnectedMacRandomizationSupported()이라는, Connected 상태에서의 Random MAC을 지원하는지 여부를 확인하는 API이다.  
+(첨언하자면 Random MAC과 연결된 AP에 대한 Random MAC은 다른 개념이다. 최신 단말들은 대부분 Random MAC을 지원하고 있다.)  
 ```java
 /**
  * @return true if this device supports connected MAC randomization.
@@ -39,8 +35,10 @@ public boolean isConnectedMacRandomizationSupported() {
   return isFeatureSupported(WIFI_FEATURE_CONNECTED_RAND_MAC);
   }
  ```
+ 
 메소드 위에는 annotaion들이 붙어있다.  
 그리고 실제로 호출해보았다.
+
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 실제로 함수가 정상적으로 invoke 되었고 해당 값도 잘 리턴 되었다.  
-isConnectedMacRandomizationSupported의 경우 요구되는 permission이 "android.permission.ACCESS_WIFI_STATE" 뿐이기 때문에 3rd party app에서도 우회해서 사용할 수 있지만, 실제로 대부분의 함수들을 사용하기는 힘들다.  
-예를 들어 저장된 모든 Wi-Fi configuration을 삭제하는 factoryRest()을 호출해본다고 가정했을 때,  
+isConnectedMacRandomizationSupported의 경우 요구되는 permission이 "android.permission.ACCESS_WIFI_STATE" 뿐이기 때문에 3rd party app에서도 우회해서 사용할 수 있지만, 실제로는 다른 이유로 대부분의 함수들을 사용하지 못한다.  
+예를 들어 저장된 모든 Wi-Fi configuration을 삭제하는 factoryRest()을 Reflection으로 호출해본다고 가정했을 때,  
 
 ```
  01-22 17:25:15.928 (+0.001s) W 10305 20682 20682 System.err: java.lang.reflect.InvocationTargetException
@@ -151,5 +149,7 @@ system app만 이 퍼미션을 획득할 수 있다.
 위에 언급했던 AOSP 소스를 확인해보면 대부분의 API에 RequiresPermission annotation이 달려있고, 대부분의 퍼미션들은 system apps로 제한되어있다.  
 참고로 system app에서 factoryReset을 reflection으로 호출해보면 아주 잘 동작한다.  
 
-이 정도면 난 이해 된 것 같다.  
+<br>
+
+오류 지적은 언제나 환영합니다:)  
 
