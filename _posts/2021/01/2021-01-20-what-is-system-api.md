@@ -28,7 +28,7 @@ Android 9부터 적용된 사항으로 앱에서 사용할 수 있는 비SDK 인
 
 
 [WifiManager.java](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/android11-release/wifi/java/android/net/wifi/WifiManager.java) 의 소스코드를 일부 가져와봤다.  
-isConnectedMacRandomizationSupported()이라는, Random MAC을 지원하는지 여부를 확인하는 API이다.
+isConnectedMacRandomizationSupported()이라는, Connected 상태에서의 Random MAC을 지원하는지 여부를 확인하는 API이다.
 ```java
 /**
  * @return true if this device supports connected MAC randomization.
@@ -54,7 +54,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 ```kotlin
 Unresolved reference: isConnectedMacRandomizationSupported
 ```
-factoryReset은 없는 함수라고 표시된다.
+isConnectedMacRandomizationSupported 없는 함수라고 표시된다.
 있는데?  
 그럼 @hide, @SystemApi, @RequiresPermission 
 각각은 무엇을 의미하는걸까?
@@ -64,26 +64,92 @@ factoryReset은 없는 함수라고 표시된다.
 >When applied to a package, class, method or field, @hide removes that node and all of its children from the documentation.
 
 @hide는 javadoc의 일부이며 pulbic API가 아니기 때문에 사용하면 안됨을 의미한다.
-@hide를 사용하면 SDK 빌드에 포함되지 않기 때문에 document에는 아예 없는 API가 되는 것이다.
+@hide를 사용하면 SDK 빌드에 포함되지 않기 때문에 document에는 아예 없는 API가 되는 것이다.  
+하지만 javadoc의 일부이기 때문에 Platform 내에서 사용 시에는 문제가 없으나 이 역시 Mainline의 영역에 있는 API는 접근 불가능하다.  
+
  
 ### @SystemApi
 실제 존재하는 API임은 맞지만, 공개되지는 않은 API이다.
 SDK 빌드 시 포함되지만 사용할 수 없고, 사용하고자 한다면 Reflection을 이용해야한다.  
 빌드 시 framework와 함께 빌드되는 앱(예를 들면 셋팅)은 빌드 타임에 해당 api를 참조하기 때문에 빌드도 되고, 사용도 가능하다.  
+따라서 @hide API를 쓰고싶으면 @SystemApi를 추가로 붙여주면 사용은 가능하지만 이 역시 Mainline 영역일 경우 빌드 자체가 되지 않고, 이 부분은 OEM만 가능한 부분이다.  
+실제로 isConnectedMacRandomizationSupported를 reflection으로 호출해보았다. (편의상 여기는 그냥 자바로..)  
 
-```kotlin
-class MainActivity : AppCompatActivity() {
+```java
+public class MainActivity extends AppCompatActivity {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    private static final String TAG = "RandomMacTest";
 
-    val wifiManger : WifiManager = getSystemService(WIFI_SERVICE) as WifiManager
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    //wifiManger.isConnectedMacRandomizationSupported();
+        WifiManager wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
 
-    val method = wifiManger::class.java.getDeclaredMethod("isConnectedMacRandomizationSupported")
-    print(method.invoke(wifiManger))
-  }
+        try {
+            Method method = wifiManager.getClass().getMethod("isConnectedMacRandomizationSupported");
+            boolean result = (Boolean) method.invoke(wifiManager);
+            Log.d(TAG, "Is supporting random MAC? " + result);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
 }
 ```
+```
+ 01-22 17:17:55.171 D 10305 19954 19954 RandomMacTest: Is supporting random MAC? false
+```
+
+실제로 함수가 정상적으로 invoke 되었고 해당 값도 잘 리턴 되었다.  
+isConnectedMacRandomizationSupported의 경우 요구되는 permission이 "android.permission.ACCESS_WIFI_STATE" 뿐이기 때문에 3rd party app에서도 우회해서 사용할 수 있지만, 실제로 대부분의 함수들을 사용하기는 힘들다.  
+예를 들어 저장된 모든 Wi-Fi configuration을 삭제하는 factoryRest()을 호출해본다고 가정했을 때,  
+
+```
+ 01-22 17:25:15.928 (+0.001s) W 10305 20682 20682 System.err: java.lang.reflect.InvocationTargetException
+ 01-22 17:25:15.928 W 10305 20682 20682 System.err: at java.lang.reflect.Method.invoke(Native Method)
+ 01-22 17:25:15.928 W 10305 20682 20682 System.err: at com.example.myapplication.MainActivity.onCreate(MainActivity.java:34)
+...
+ 01-22 17:25:15.931 W 10305 20682 20682 System.err: Caused by: java.lang.SecurityException: WifiService: Neither user 10305 nor current process has android.permission.NETWORK_SETTINGS.
+...
+ 01-22 17:25:15.932 W 10305 20682 20682 System.err: at android.net.wifi.IWifiManager$Stub$Proxy.factoryReset(IWifiManager.java:3651)
+ 01-22 17:25:15.932 W 10305 20682 20682 System.err: at android.net.wifi.WifiManager.factoryReset(WifiManager.java:5525)
+ 01-22 17:25:15.932 W 10305 20682 20682 System.err: ... 17 more
+```
+
+"android.permission.NETWORK_SETTINGS"이 필요하다는 메시지와 함께 InvocationTargetException으로 정상적인 호출이 되지 않는다.  
+
+```java
+    /**
+     * Removes all saved Wi-Fi networks, Passpoint configurations, ephemeral networks, Network
+     * Requests, and Network Suggestions.
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresPermission(android.Manifest.permission.NETWORK_SETTINGS)
+    public void factoryReset() {
+        try {
+            mService.factoryReset(mContext.getOpPackageName());
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
+```
+
+@RequiresPermission으로 해당 퍼미션이 필요함을 명시하고 있다.  
+그러면 저 퍼미션을 추가하면 될까?  
+답은 안된다.
+
+```
+Permission is only granted to system apps 
+```
+system app만 이 퍼미션을 획득할 수 있다.  
+위에 언급했던 AOSP 소스를 확인해보면 대부분의 API에 RequiresPermission annotation이 달려있고, 대부분의 퍼미션들은 system apps로 제한되어있다.  
+참고로 system app에서 factoryReset을 reflection으로 호출해보면 아주 잘 동작한다.  
+
+이 정도면 난 이해 된 것 같다.  
+
