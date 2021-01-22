@@ -1,7 +1,7 @@
 ---
 title: "@Systemapi, @hide 의 이해"
 date: 2021-01-23
-categories: [Android framework]
+categories: [Android-framework]
 tags: [Android, Android framework, systemapi]
 comments: true
 ---
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
 ### @RequiresPermission 
 isConnectedMacRandomizationSupported의 경우 요구되는 permission이 "android.permission.ACCESS_WIFI_STATE" 뿐이기 때문에 3rd party app에서도 우회해서 사용할 수 있지만, 실제로는 다른 이유로 대부분의 함수들을 사용하지 못한다.  
-예를 들어 저장된 모든 Wi-Fi configuration을 삭제하는 factoryRest()을 Reflection으로 호출해본다고 가정했을 때,  
+예를 들어 저장된 모든 Wi-Fi configuration을 삭제하는 factoryReset()을 Reflection으로 호출해본다고 가정했을 때,  
 
 ```
  01-22 17:25:15.928 (+0.001s) W 10305 20682 20682 System.err: java.lang.reflect.InvocationTargetException

@@ -1,7 +1,7 @@
 ---
 title: "Android Context란 무엇인가"
 date: 2021-01-16
-categories: [Android framework]
+categories: [Android-framework]
 tags: [Android, Android framework, Context]
 comments: true
 ---
