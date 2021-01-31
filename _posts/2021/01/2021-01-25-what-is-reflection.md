@@ -2,11 +2,11 @@
 title: "Java Reflection의 이해"
 date: 2021-01-25
 categories: [Java]
-tags: [Java, Refelction]
+tags: [Java, Reflection]
 comments: true
 ---
 
-이전 포스팅에서 장황하게 @hide, @SystemApi의 설명을 한 이유는 이 Refelction을 위해서였다.  
+이전 포스팅에서 장황하게 @hide, @SystemApi의 설명을 한 이유는 이 Reflection을 위해서였다.  
 우리 팀은 종종 Reflection을 통해서 API를 호출하는데, 사실 자주 쓰면서도 정확하게 이해하고 쓰지는 않았던 것 같다.  
 
 Reflection은 자바 런타임에 class name을 가져오고, object를 만들 수 있는 방법이다.  
