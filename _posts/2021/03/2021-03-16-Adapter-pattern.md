@@ -6,7 +6,7 @@ tags: [Java, Design pattern, Adpater]
 comments: true
 ---
 
-**<Java 언어로 배우는 디자인 패턴 입문>을 공부하며 정리한 내용입니다.**
+**Java 언어로 배우는 디자인 패턴 입문을 공부하며 정리한 내용입니다.**
 <br>
 
 굉장히 오랜만에 올리는 포스팅  
@@ -24,7 +24,7 @@ AC 어댑터는 가정용 전원으로 제공되고 있는 교류 100볼트를 �
 <br>
 <br>
 
-###Class에 의한 Adpater 패턴(상속을 사용한 패턴)  
+### Class에 의한 Adpater 패턴(상속을 사용한 패턴)  
 ![Adpater](https://user-images.githubusercontent.com/77476913/112746178-45bb0080-8fe8-11eb-86fc-9ad2e79e947c.PNG)  
 제공되어있는 Adpatee class를 상속하여 Apdater 역할을 하는 Adpater class가 있다.  
 그리고 Target interface(필요한 것)를 구현한다.  
@@ -34,7 +34,7 @@ Main 클래스를 전혀 변형하지 않고 Adapter 클래스의 구현을 바�
 <br>
 <br>
 
-###Instance에 의한 Adpater 패턴(위임을 사용한 패턴)
+### Instance에 의한 Adpater 패턴(위임을 사용한 패턴)
 Java에서 말하는 위임은 어떤 메소드의 실제 처리를 다른 인스턴스의 메소드에 맡기는 것을 뜻한다.  
 위의 패턴과 달리지는 것은 아래와 같다.
 1. Target은 인터페이스가 아니라 클래스가 된다.  
