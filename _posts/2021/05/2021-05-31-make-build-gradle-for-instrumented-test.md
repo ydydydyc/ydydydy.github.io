@@ -29,7 +29,8 @@ Android Instrumented 테스트를 위한 build.gradle 만들기
 먼저 build.gradle을 경로에 만들어주고 
 1. testInstrumentationRunner를 defaultConfig에 추가
 2. sourceSets에 androidTest를 추가.
-여기서 androidTest에는 AndroidManifest와 src 디렉토리만 따로 지정해주었다.
+여기서 androidTest에는 AndroidManifest와 src 디렉토리만 따로 지정해주었다.  
+
 ```
 apply plugin: 'com.android.application'
 ...
